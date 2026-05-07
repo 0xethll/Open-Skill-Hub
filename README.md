@@ -28,6 +28,7 @@ See [ClawHub](https://openclaw.ai/) for Openclaw skill installation instructions
 
 | Skill | Domain | Claude Code | Openclaw |
 |-------|--------|:-----------:|:--------:|
+| [contract-review](skills/contract-review/README.md) | Legal | ✅ | ✅ |
 | [hello-world](skills/hello-world/README.md) | General | ✅ | ✅ |
 
 ---
