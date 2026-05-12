@@ -1,6 +1,6 @@
 # Contract Review
 
-**Platforms:** Claude Code · Openclaw  
+**Platforms:** Claude · Openclaw · Codex
 **Domain:** Legal
 
 ## Purpose

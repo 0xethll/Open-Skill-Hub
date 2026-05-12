@@ -18,7 +18,7 @@ Standard skill layout:
 | --- | --- |
 | `README.md` | Human-facing overview, use cases, and scope. |
 | `skill.md` | Shared canonical skill instructions used when a platform has no override. |
-| `platforms/claude-code/SKILL.md` | Optional Claude Code-specific entrypoint. |
+| `platforms/claude/SKILL.md` | Optional Claude specific entrypoint. |
 | `platforms/openclaw/skill.md` | Optional OpenClaw-specific entrypoint. |
 
 Optional directories for larger skills:
