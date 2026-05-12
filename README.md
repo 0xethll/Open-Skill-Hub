@@ -29,7 +29,6 @@ See [ClawHub](https://openclaw.ai/) for Openclaw skill installation instructions
 | Skill | Domain | Claude Code | Openclaw |
 |-------|--------|:-----------:|:--------:|
 | [contract-review](skills/contract-review/README.md) | Legal | ✅ | ✅ |
-| [hello-world](skills/hello-world/README.md) | General | ✅ | ✅ |
 
 ---
 
@@ -46,9 +45,12 @@ bun run build
 ## Adding a Skill
 
 1. Create a directory under `skills/<your-skill-name>/`
-2. Add `README.md` (description), `claude-code.md` (Claude Code format), `openclaw.md` (Openclaw format)
-3. Run `bun run build`
-4. Add a row to the Skills table above
+2. Add `README.md` and the shared canonical `skill.md`
+3. Add platform-specific overrides only when needed:
+   - `platforms/claude-code/SKILL.md`
+   - `platforms/openclaw/skill.md`
+4. Run `bun run build`
+5. Add a row to the Skills table above
 
 ---
 
