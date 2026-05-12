@@ -2,16 +2,14 @@
 
 ## Purpose
 
-This repository is a global, portable skill library for AI coding agents. Skills live under `skills/<skill-name>/` and are packaged for multiple platforms through the build script.
+This repository is a global, portable skill library for AI coding agents. Skills live under `skills/<skill-name>/`.
 
 Use this guide when creating, reviewing, or updating skills. It distills reusable authoring patterns from the reference OpenClaw skills without copying their domain-specific content.
 
 ## Repository Workflow
 
 - Treat `skills/` as the source of truth.
-- Do not manually edit generated files in `dist/`.
 - Each skill should live in `skills/<skill-name>/`.
-- After editing skills, run `bun run build` to regenerate platform outputs.
 - When adding a new skill, update the root `README.md` Skills table.
 
 Standard skill layout:
@@ -127,7 +125,6 @@ Keep shared behavior in `skill.md`, and isolate platform-specific details under 
 - Prefer portable instructions and plain Markdown.
 - If a skill requires a binary, service, account, or setup step, state that requirement clearly.
 - If a command supports JSON or non-interactive output, prefer that mode for agent workflows.
-- Keep generated platform outputs in `dist/` reproducible from source files.
 - Build packaging should prefer a platform override when present, then fall back to `skill.md`.
 - Shared `references/`, `assets/`, and `scripts/` are copied to platform packages by default. Platform-specific files may override or extend them from `platforms/<platform>/`.
 
@@ -144,4 +141,3 @@ Before considering a skill ready:
 - Safety boundaries are documented for any risky operation.
 - Platform-specific differences are isolated under `platforms/<platform>/`.
 - The root `README.md` Skills table is updated.
-- `bun run build` succeeds.

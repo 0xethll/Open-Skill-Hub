@@ -1,15 +1,5 @@
 {
   "name": "open-skill-hub",
   "version": "0.2.0",
-  "type": "module",
-  "scripts": {
-    "build": "bun scripts/build.ts"
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@types/node": "^25.7.0"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  }
+  "type": "module"
 }

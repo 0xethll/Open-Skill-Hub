@@ -6,16 +6,11 @@ A personal AI skill library for **Claude Code** and **Openclaw**, covering all i
 
 ## Install
 
-### Claude Code — full plugin
+### Claude Code
 
 ```bash
-claude plugins install github:hanlynn/Open-Skill-Hub?path=dist/claude-code
-```
-
-### Claude Code — single skill (manual copy)
-
-```bash
-cp skills/<name>/claude-code.md ~/.claude/skills/<name>/SKILL.md
+mkdir -p ~/.claude/skills/<name>
+cp skills/<name>/skill.md ~/.claude/skills/<name>/SKILL.md
 ```
 
 ### Openclaw
@@ -29,16 +24,7 @@ See [ClawHub](https://openclaw.ai/) for Openclaw skill installation instructions
 | Skill | Domain | Claude Code | Openclaw |
 |-------|--------|:-----------:|:--------:|
 | [contract-review](skills/contract-review/README.md) | Legal | ✅ | ✅ |
-
----
-
-## Build
-
-Regenerate `dist/` after editing skills:
-
-```bash
-bun run build
-```
+| [x-post-strategist](skills/x-post-strategist/README.md) | Writing | ✅ | ✅ |
 
 ---
 
@@ -49,8 +35,7 @@ bun run build
 3. Add platform-specific overrides only when needed:
    - `platforms/claude-code/SKILL.md`
    - `platforms/openclaw/skill.md`
-4. Run `bun run build`
-5. Add a row to the Skills table above
+4. Add a row to the Skills table above
 
 ---
 
