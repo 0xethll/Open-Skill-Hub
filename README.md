@@ -1,6 +1,6 @@
 # Open Skill Hub
 
-A personal AI skill library for **Claude** and **Openclaw**, covering all industries and domains.
+A personal AI plugin marketplace and skill library for AI coding agents, organized into domain-specific Codex plugins.
 
 ---
 
@@ -13,14 +13,15 @@ Leave sparse paths empty, or include both paths below:
 
 ```text
 .agents/plugins
-plugins/open-skill-hub
+plugins/legal
+plugins/writing
 ```
 
 ### Claude
 
 ```bash
 mkdir -p ~/.claude/skills/<name>
-cp skills/<name>/skill.md ~/.claude/skills/<name>/SKILL.md
+cp plugins/<domain>/skills/<name>/SKILL.md ~/.claude/skills/<name>/SKILL.md
 ```
 
 ### Openclaw
@@ -29,23 +30,23 @@ See [ClawHub](https://openclaw.ai/) for Openclaw skill installation instructions
 
 ---
 
-## Skills
+## Plugins And Skills
 
-| Skill | Domain | Claude | Openclaw | Codex |
-|-------|--------|:------:|:--------:|:-----:|
-| [contract-review](skills/contract-review/README.md) | Legal | ✅ | ✅ | ✅ |
-| [x-post-strategist](skills/x-post-strategist/README.md) | Writing | ✅ | ✅ | ✅ |
+| Plugin | Skill | Domain | Claude | Openclaw | Codex |
+|--------|-------|--------|:------:|:--------:|:-----:|
+| [open-skill-hub-legal](plugins/legal/README.md) | [contract-review](plugins/legal/skills/contract-review/README.md) | Legal | ✅ | ✅ | ✅ |
+| [open-skill-hub-writing](plugins/writing/README.md) | [x-post-strategist](plugins/writing/skills/x-post-strategist/README.md) | Writing | ✅ | ✅ | ✅ |
 
 ---
 
 ## Adding a Skill
 
-1. Create a directory under `skills/<your-skill-name>/`
-2. Add `README.md` and the shared canonical `skill.md`
-3. Add platform-specific overrides only when needed:
-   - `platforms/claude/SKILL.md`
-   - `platforms/openclaw/skill.md`
-4. Add a row to the Skills table above
+1. Choose the domain plugin under `plugins/<domain>/`, or create a new domain plugin when the skill needs a separate install unit.
+2. Create `plugins/<domain>/skills/<your-skill-name>/`
+3. Add `README.md` and the canonical `SKILL.md`
+4. Update the plugin `README.md`
+5. Add or update the root table above
+6. If you create a new plugin, add it to `.agents/plugins/marketplace.json`
 
 ---
 
