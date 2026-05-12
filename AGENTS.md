@@ -2,22 +2,34 @@
 
 ## Purpose
 
-This repository is a global, portable skill library for AI coding agents. Skills live under `skills/<skill-name>/`.
+This repository is a global, portable skill library for AI coding agents. Skills live inside domain-specific plugins under `plugins/<domain>/skills/<skill-name>/`.
 
 Use this guide when creating, reviewing, or updating skills. It distills reusable authoring patterns from the reference OpenClaw skills without copying their domain-specific content.
 
 ## Repository Workflow
 
-- Treat `skills/` as the source of truth.
-- Each skill should live in `skills/<skill-name>/`.
-- When adding a new skill, update the root `README.md` Skills table.
+- Treat `plugins/` as the source of truth.
+- Each Codex plugin should live in `plugins/<domain>/`.
+- Each skill should live in `plugins/<domain>/skills/<skill-name>/`.
+- Add a new domain plugin only when the skill needs a separate install unit, audience, risk boundary, or integration surface.
+- When adding a new skill, update the plugin `README.md` and the root `README.md` Plugins And Skills table.
+- When adding a new plugin, update `.agents/plugins/marketplace.json`.
+
+## Git Workflow
+
+- `main` is protected. Do not make implementation changes directly on `main`.
+- Before editing files, check the current branch with `git branch --show-current`.
+- Create or switch to a feature branch for every implementation task, including code, documentation, skill, plugin, marketplace, and configuration changes.
+- Use `codex/<short-task-name>` for Codex-created branches unless the user requests a different name.
+- Keep branch names lowercase, kebab-case, and descriptive, such as `codex/plugin-marketplace-layout`.
+- Do not commit directly to `main`; merge changes through a pull request or the repository's normal review process.
 
 Standard skill layout:
 
 | Path | Purpose |
 | --- | --- |
 | `README.md` | Human-facing overview, use cases, and scope. |
-| `skill.md` | Shared canonical skill instructions used when a platform has no override. |
+| `SKILL.md` | Shared canonical skill instructions used when a platform has no override. |
 | `platforms/claude/SKILL.md` | Optional Claude specific entrypoint. |
 | `platforms/openclaw/skill.md` | Optional OpenClaw-specific entrypoint. |
 
@@ -30,25 +42,31 @@ Optional directories for larger skills:
 | `assets/` | The skill needs templates, examples, fixtures, or reusable documents. |
 | `platforms/<platform>/` | The skill needs platform-specific frontmatter, metadata, references, assets, or wrappers. |
 
-Keep `skill.md` useful on its own. Extra files should support the workflow, not hide the essential instructions.
+Keep `SKILL.md` useful on its own. Extra files should support the workflow, not hide the essential instructions.
 
 Use this source structure for new skills:
 
 ```text
-skills/<skill-name>/
+plugins/<domain>/
   README.md
-  skill.md
-  references/
+  .codex-plugin/
+    plugin.json
   assets/
-  scripts/
-  platforms/
-    claude-code/
+  skills/
+    <skill-name>/
+      README.md
       SKILL.md
-    openclaw/
-      skill.md
+      references/
+      assets/
+      scripts/
+      platforms/
+        claude-code/
+          SKILL.md
+        openclaw/
+          skill.md
 ```
 
-Most skills should start with only `README.md` and `skill.md`. Add platform-specific files only when the platform needs different frontmatter, metadata, naming, tool declarations, or behavioral instructions.
+Most skills should start with only `README.md` and `SKILL.md`. Add platform-specific files only when the platform needs different frontmatter, metadata, naming, tool declarations, or behavioral instructions.
 
 ## Naming And Frontmatter
 
@@ -119,13 +137,13 @@ When adapting reference skills, preserve their safety mindset: review before ins
 
 ## Platform Portability
 
-Keep shared behavior in `skill.md`, and isolate platform-specific details under `platforms/<platform>/`.
+Keep shared behavior in `SKILL.md`, and isolate platform-specific details under `platforms/<platform>/`.
 
 - Do not assume a tool exists unless the skill documents it.
 - Prefer portable instructions and plain Markdown.
 - If a skill requires a binary, service, account, or setup step, state that requirement clearly.
 - If a command supports JSON or non-interactive output, prefer that mode for agent workflows.
-- Build packaging should prefer a platform override when present, then fall back to `skill.md`.
+- Build packaging should prefer a platform override when present, then fall back to `SKILL.md`.
 - Shared `references/`, `assets/`, and `scripts/` are copied to platform packages by default. Platform-specific files may override or extend them from `platforms/<platform>/`.
 
 ## Quality Checklist
@@ -133,11 +151,12 @@ Keep shared behavior in `skill.md`, and isolate platform-specific details under 
 Before considering a skill ready:
 
 - The skill name is lowercase kebab-case.
-- `README.md` and `skill.md` exist for the skill.
+- `README.md` and `SKILL.md` exist for the skill.
 - Frontmatter descriptions clearly state when to use the skill.
 - The main workflow is executable without reading `reference/`.
 - User interaction rules are explicit.
 - Output expectations are clear.
 - Safety boundaries are documented for any risky operation.
 - Platform-specific differences are isolated under `platforms/<platform>/`.
-- The root `README.md` Skills table is updated.
+- The plugin `README.md` and root `README.md` Plugins And Skills table are updated.
+- New plugins are listed in `.agents/plugins/marketplace.json`.
