@@ -1,6 +1,6 @@
 # X Post Strategist
 
-**Platforms:** Claude Code · Openclaw
+**Platforms:** Claude · Openclaw · Codex
 **Domain:** Writing
 
 ## Purpose
