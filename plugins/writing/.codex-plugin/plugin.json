@@ -1,5 +1,5 @@
 {
-  "name": "writing",
+  "name": "open-skill-hub-writing",
   "version": "0.1.0",
   "description": "Writing and content strategy skills for AI coding agents.",
   "author": {
@@ -14,7 +14,7 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Open Skill Hub Writing",
+    "displayName": "Writing",
     "shortDescription": "Writing and content strategy workflows",
     "longDescription": "Open Skill Hub Writing packages reusable writing and content strategy skills for AI coding agents.",
     "developerName": "devasher",
