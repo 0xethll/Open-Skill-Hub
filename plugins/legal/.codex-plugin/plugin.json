@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "description": "Legal and contract skills for AI coding agents.",
   "author": {
-    "name": "devasher"
+    "name": "devasher",
+    "email": "hlxstc680@gmail.com",
+    "url": "https://archlab.space"
   },
+  "homepage": "https://github.com/0xethll/Open-Skill-Hub",
   "repository": "https://github.com/0xethll/Open-Skill-Hub",
   "license": "MIT",
   "keywords": [
@@ -28,6 +31,10 @@
       "Help me review this contract in plain language."
     ],
     "websiteURL": "https://github.com/0xethll/Open-Skill-Hub",
+    "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+    "termsOfServiceURL": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
+    "brandColor": "#10A37F",
+    "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
     "screenshots": []
   }
