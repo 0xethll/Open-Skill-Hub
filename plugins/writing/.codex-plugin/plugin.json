@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "description": "Writing and content strategy skills for AI coding agents.",
   "author": {
-    "name": "devasher"
+    "name": "devasher",
+    "email": "hlxstc680@gmail.com",
+    "url": "https://archlab.space"
   },
-  "repository": "https://github.com/0xethll/Open-Skill-Hub",
+  "repository": "https://github.com/0xethll/Open-Skill-Hub/tree/main/plugins/writing",
   "license": "MIT",
   "keywords": [
     "skills",
@@ -27,7 +29,8 @@
     "defaultPrompt": [
       "Turn this idea into a strong X post."
     ],
-    "websiteURL": "https://github.com/0xethll/Open-Skill-Hub",
+    "brandColor": "#10A37F",
+    "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
     "screenshots": []
   }
