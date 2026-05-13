@@ -13,7 +13,7 @@ Use this guide when creating, reviewing, or updating skills. It distills reusabl
 - Each skill should live in `plugins/<domain>/skills/<skill-name>/`.
 - Add a new domain plugin only when the skill needs a separate install unit, audience, risk boundary, or integration surface.
 - When adding a new skill, update the plugin `README.md` and the root `README.md` Plugins And Skills table.
-- When adding a new plugin, update `.agents/plugins/marketplace.json`.
+- When adding a new plugin, update `.agents/plugins/marketplace.json` (Codex) and `.claude-plugin/marketplace.json` (Claude Code).
 
 ## Git Workflow
 
@@ -64,6 +64,8 @@ Use this source structure for new skills:
 plugins/<domain>/
   README.md
   .codex-plugin/
+    plugin.json
+  .claude-plugin/
     plugin.json
   assets/
   skills/
