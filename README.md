@@ -34,8 +34,8 @@ See [ClawHub](https://openclaw.ai/) for Openclaw skill installation instructions
 
 | Plugin | Skill | Domain | Claude | Openclaw | Codex |
 |--------|-------|--------|:------:|:--------:|:-----:|
-| [open-skill-hub-legal](plugins/legal/README.md) | [contract-review](plugins/legal/skills/contract-review/README.md) | Legal | ✅ | ✅ | ✅ |
-| [open-skill-hub-writing](plugins/writing/README.md) | [x-post-strategist](plugins/writing/skills/x-post-strategist/README.md) | Writing | ✅ | ✅ | ✅ |
+| [legal](plugins/legal/README.md) | [contract-review](plugins/legal/skills/contract-review/README.md) | Legal | ✅ | ✅ | ✅ |
+| [writing](plugins/writing/README.md) | [x-post-strategist](plugins/writing/skills/x-post-strategist/README.md) | Writing | ✅ | ✅ | ✅ |
 
 ---
 
