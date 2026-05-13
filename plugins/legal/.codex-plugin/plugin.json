@@ -1,5 +1,5 @@
 {
-  "name": "legal",
+  "name": "open-skill-hub-legal",
   "version": "0.1.0",
   "description": "Legal and contract skills for AI coding agents.",
   "author": {
@@ -14,7 +14,7 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Open Skill Hub Legal",
+    "displayName": "Legal",
     "shortDescription": "Plain-language legal and contract workflows",
     "longDescription": "Open Skill Hub Legal packages reusable legal and contract skills for AI coding agents.",
     "developerName": "devasher",
