@@ -5,7 +5,7 @@
   },
   "plugins": [
     {
-      "name": "open-skill-hub-legal",
+      "name": "legal",
       "source": {
         "source": "local",
         "path": "./plugins/legal"
@@ -17,7 +17,7 @@
       "category": "Productivity"
     },
     {
-      "name": "open-skill-hub-writing",
+      "name": "writing",
       "source": {
         "source": "local",
         "path": "./plugins/writing"
