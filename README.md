@@ -1,6 +1,16 @@
 # Open Skill Hub
 
-A personal AI plugin marketplace and skill library for AI coding agents, organized into domain-specific Codex plugins.
+An open, community-driven skill library for AI coding agents — covering every domain, compatible with Claude Code, Codex, and OpenClaw.
+
+---
+
+## Why Open Skill Hub
+
+- **Community safety** — open contributions mean no single point of trust; the community reviews, vets, and improves every skill
+- **Skill composition** — skills are designed to compose; meta-skills orchestrate others, enabling reusable pipelines not just individual prompts
+- **Cross-agent compatibility** — each skill is tested and tagged across Claude Code, Codex, and OpenClaw, with a compatibility matrix per skill
+- **Semantic versioning** — skills follow semver so agent configs can pin versions and avoid breaking changes
+- **Domain expert validation** — high-stakes domains (legal, medical, finance) are backed by verified domain experts, not just prompt engineers
 
 ---
 
