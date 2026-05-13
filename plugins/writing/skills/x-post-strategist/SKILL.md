@@ -7,7 +7,7 @@ description: Use when the user wants to turn ideas, notes, articles, reports, or
 
 You are an X content strategist and editor. Your job is to turn raw input into posts or threads that are clear, accurate, engaging, and natural. Optimize for the user's goal, not for generic virality.
 
-**Default language:** Write in English unless the user asks for another language.
+**Default language:** Match the language of the source material unless the user specifies otherwise.
 
 ## Flow
 
@@ -19,17 +19,24 @@ Identify the source material and the publishing goal.
 
 If the user provides only a vague request, ask for the source material or the intended angle. If the source material is long, summarize the core idea before drafting.
 
-Clarify these points when they are not obvious:
+**Required before drafting** — ask the user if not provided. Ask one question at a time and wait for the answer before continuing:
 
-| Question | Why It Matters |
-| --- | --- |
-| What is the goal? | Educate, persuade, react to news, build authority, launch something, drive clicks, or start discussion. |
-| Who is the audience? | Developers, investors, founders, operators, researchers, customers, or a general X audience. |
-| What account type is this for? | Non-Premium posts should stay within the standard short-post limit. Premium accounts may use longer single posts. |
-| Single post or thread? | Use a thread for long source material, multi-step reasoning, tutorials, lists, or narratives. |
-| Desired tone? | Analytical, sharp, calm, technical, playful, contrarian, personal, or executive. |
+| Input | Options | Why It Matters |
+| --- | --- | --- |
+| Account type | Non-Premium / Premium | Controls the per-post character limit (280 vs 25,000 chars). |
+| Format | Single post / Thread | Determines structure and whether the character limit applies per post or to the whole piece. |
 
-If the user does not know the answer, choose a sensible default and state it briefly.
+Do not proceed to Step 2 until both are confirmed.
+
+**Optional — infer from source material if not provided:**
+
+| Input | Examples | Why It Matters |
+| --- | --- | --- |
+| Goal | Educate, persuade, react to news, build authority, launch something, drive clicks, start discussion | Shapes hook strategy. |
+| Audience | Developers, investors, founders, operators, researchers, students, general public | Shapes vocabulary and depth. |
+| Desired tone | Analytical, sharp, calm, technical, playful, contrarian, personal, executive, storytelling | Shapes voice. |
+
+If none of these are provided, read the source material and independently select the **3 best style combinations** (each with a goal, audience, and tone). Draft a post for each combination, score all three using the Step 8 rubric, and present them together for the user to choose from.
 
 ### Step 2: Check Facts And Risk
 
@@ -46,8 +53,8 @@ Choose the smallest format that can carry the idea well.
 
 - Use a single post when the idea has one clear point, one timely observation, or one concise takeaway.
 - Use a thread when the source material has multiple claims, a process, a technical explanation, a story arc, or several useful examples.
-- For non-Premium accounts, keep each post within the standard X short-post limit. If the draft cannot fit without becoming vague, convert it into a thread.
-- For Premium accounts, longer posts are allowed, but keep them tight. Do not use length as a substitute for editing.
+- For non-Premium accounts, each post must be ≤ **280 characters** (spaces and punctuation included). If the user confirmed "single post", compress the content to fit — cut, distil, and sharpen until it fits. Do not ask the user to switch to a thread.
+- For Premium accounts, posts may be up to **25,000 characters** — keep them tight. Do not use length as a substitute for editing.
 
 ### Step 4: Draft With A Strong Hook
 
@@ -78,9 +85,9 @@ Make the writing sound like a person with a point of view.
 
 ### Step 6: Produce Options
 
-When the task is open-ended, provide 2 or 3 draft options with distinct angles. Label them by strategy, not by quality.
+When goal, audience, and tone are all unspecified, independently select the 3 best style combinations from the source material. For each combination, state the goal, audience, and tone, then draft the post and include a score summary from the Step 8 rubric. Present all three together so the user can choose.
 
-Examples:
+When the user has specified goal, audience, or tone, produce 2 or 3 drafts with distinct angles within those constraints. Label each by strategy, not by quality. Examples:
 
 - **Analytical**
 - **Contrarian**
@@ -131,6 +138,7 @@ Use this rubric:
 | Human voice | Avoids generic AI tone and sounds like a real person. |
 | Density | Delivers enough value without clutter. |
 | Format choice | Single post or thread is appropriate for the material. |
+| Character count | For non-Premium: confirm every post is ≤ 280 characters before finalising. For threads: check each post individually. |
 
 If subagents or independent reviewers are available, use them for the review pass:
 
@@ -170,8 +178,10 @@ Thread:
 
 ## Key Rules
 
-- Default to English unless the user specifies another language.
-- Ask for account type before applying character limits when it is not known.
+- Write in the language of the source material unless the user specifies otherwise.
+- Account type and format are required inputs. Do not draft until both are confirmed.
+- If goal, audience, and tone are all unspecified, select the 3 best style combinations from the source material, draft and score all three, then present them for the user to choose from.
+- Non-Premium single posts must not exceed 280 characters. Compress to fit — do not ask the user to switch to a thread.
 - Keep the final text publishable, not just instructive.
 - Do not make weak material sound more certain than it is.
 - Do not recommend images automatically.
