@@ -5,7 +5,7 @@
   "author": {
     "name": "devasher"
   },
-  "repository": "https://github.com/Oxethll/Open-Skill-Hub",
+  "repository": "https://github.com/0xethll/Open-Skill-Hub",
   "license": "MIT",
   "keywords": [
     "skills",
@@ -27,7 +27,7 @@
     "defaultPrompt": [
       "Turn this idea into a strong X post."
     ],
-    "websiteURL": "https://github.com/Oxethll/Open-Skill-Hub",
+    "websiteURL": "https://github.com/0xethll/Open-Skill-Hub",
     "logo": "./assets/icon.png",
     "screenshots": []
   }
