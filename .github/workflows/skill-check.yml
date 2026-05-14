@@ -1,0 +1,20 @@
+name: Skill Structure Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  skill-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check skill structure
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.sha }}
+        run: |
+          chmod +x scripts/check-skill-structure.sh
+          scripts/check-skill-structure.sh

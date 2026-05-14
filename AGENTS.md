@@ -14,6 +14,9 @@ Use this guide when creating, reviewing, or updating skills. It distills reusabl
 - Add a new domain plugin only when the skill needs a separate install unit, audience, risk boundary, or integration surface.
 - When adding a new skill, update the plugin `README.md` and the root `README.md` Plugins And Skills table.
 - When adding a new plugin, update `.agents/plugins/marketplace.json` (Codex) and `.claude-plugin/marketplace.json` (Claude Code).
+- When modifying any file inside a skill directory, you must also:
+  1. Add a new entry to the skill's `CHANGELOG.md` describing the change (format: `## [X.Y.Z] - YYYY-MM-DD`).
+  2. Bump the version in both `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` for the parent plugin. Both files must stay in sync. CI enforces this on every PR.
 
 ## Git Workflow
 
@@ -167,7 +170,7 @@ Keep shared behavior in `SKILL.md`, and isolate platform-specific details under 
 Before considering a skill ready:
 
 - The skill name is lowercase kebab-case.
-- `README.md` and `SKILL.md` exist for the skill.
+- `README.md`, `SKILL.md`, and `CHANGELOG.md` exist for the skill.
 - Frontmatter descriptions clearly state when to use the skill.
 - The main workflow is executable without reading `reference/`.
 - User interaction rules are explicit.
