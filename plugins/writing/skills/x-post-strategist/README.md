@@ -17,14 +17,18 @@ A strategy editor for writing X posts and threads. It turns rough ideas, short p
 
 ## What It Does
 
-1. Clarifies the goal, audience, tone, account type, and format
-2. Checks whether facts need verification before confident writing
-3. Chooses a single post or thread based on the material
-4. Writes strong hooks and publishable drafts
-5. Removes generic AI tone while preserving the user's voice
-6. Decides whether an image would improve the post
-7. Provides an image brief when a visual would help
-8. Scores and revises the draft for X fit, accuracy, quality, and human voice
+**Phase 1: Research**
+1. Clarifies the goal, audience, tone, account type, format, and optional style samples
+2. Automatically searches for background context, trending angles, and fact signals — on every request
+3. Verifies factual claims and flags risk before writing
+
+**Phase 2: Creation**
+4. Chooses a single post or thread; selects a narrative template (Argument / Story / Tutorial) for threads
+5. Writes strong hooks and publishable drafts
+6. Calibrates voice against user-provided style samples, or infers it from the source material
+7. Produces multiple drafts with distinct angles when goal, audience, or tone is unspecified
+8. Decides whether an image would improve the post and provides a brief when one helps
+9. Scores and revises the draft for X fit, accuracy, quality, and human voice
 
 ## Notes
 
