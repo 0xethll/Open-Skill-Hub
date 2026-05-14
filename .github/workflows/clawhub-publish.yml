@@ -15,6 +15,11 @@ jobs:
       - name: Install clawhub CLI
         run: npm i -g clawhub
 
+      - name: Authenticate clawhub
+        run: clawhub login --token "$CLAWHUB_TOKEN"
+        env:
+          CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
+
       - name: Publish changed skills
         env:
           CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
