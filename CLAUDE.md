@@ -167,7 +167,7 @@ Keep shared behavior in `SKILL.md`, and isolate platform-specific details under 
 Before considering a skill ready:
 
 - The skill name is lowercase kebab-case.
-- `README.md` and `SKILL.md` exist for the skill.
+- `README.md`, `SKILL.md`, and `CHANGELOG.md` exist for the skill.
 - Frontmatter descriptions clearly state when to use the skill.
 - The main workflow is executable without reading `reference/`.
 - User interaction rules are explicit.
