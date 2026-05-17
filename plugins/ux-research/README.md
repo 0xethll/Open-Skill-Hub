@@ -7,6 +7,7 @@ UX research skills for AI coding agents. Helps researchers and product teams syn
 | Skill | Description |
 | --- | --- |
 | [interview-synthesis](skills/interview-synthesis/README.md) | Synthesize user interviews, usability tests, focus groups, and survey open-ends into structured themes, quotes, and prioritized recommendations. |
+| [user-research-synthesis](skills/user-research-synthesis/README.md) | Turn raw interview transcripts, usability notes, or survey responses into a structured insights report with themes, evidence, and recommendations. |
 
 ## Install
 
@@ -15,6 +16,9 @@ UX research skills for AI coding agents. Helps researchers and product teams syn
 ```bash
 mkdir -p ~/.claude/skills/interview-synthesis
 cp plugins/ux-research/skills/interview-synthesis/SKILL.md ~/.claude/skills/interview-synthesis/SKILL.md
+
+mkdir -p ~/.claude/skills/user-research-synthesis
+cp plugins/ux-research/skills/user-research-synthesis/SKILL.md ~/.claude/skills/user-research-synthesis/SKILL.md
 ```
 
 ### Codex

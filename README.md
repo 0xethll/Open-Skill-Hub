@@ -24,6 +24,7 @@ Leave sparse paths empty, or include both paths below:
 .agents/plugins
 plugins/legal
 plugins/writing
+plugins/ux-research
 ```
 
 ### Claude
@@ -46,6 +47,7 @@ See [ClawHub](https://openclaw.ai/) for Openclaw skill installation instructions
 | [legal](plugins/legal/README.md) | [contract-review](plugins/legal/skills/contract-review/README.md) | Legal | ✅ | ✅ | ✅ |
 | [writing](plugins/writing/README.md) | [x-post-strategist](plugins/writing/skills/x-post-strategist/README.md) | Writing | ✅ | ✅ | ✅ |
 | [ux-research](plugins/ux-research/README.md) | [interview-synthesis](plugins/ux-research/skills/interview-synthesis/README.md) | UX Research | ✅ | ✅ | ✅ |
+| [ux-research](plugins/ux-research/README.md) | [user-research-synthesis](plugins/ux-research/skills/user-research-synthesis/README.md) | UX Research | ✅ | ✅ | ✅ |
 | [devops](plugins/devops/README.md) | [incident-postmortem](plugins/devops/skills/incident-postmortem/README.md) | DevOps / SRE | ✅ | ✅ | ✅ |
 
 ---
