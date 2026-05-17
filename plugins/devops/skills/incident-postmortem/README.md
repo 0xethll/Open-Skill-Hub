@@ -9,21 +9,21 @@ A conversational postmortem facilitator for engineering teams. Guides the team t
 
 ## When to Use
 
-- After any production incident you need to document for the team or stakeholders
-- When the on-call engineer needs help structuring a postmortem from raw notes and chat logs
-- When you want to ensure the postmortem is blameless, complete, and follows a consistent format
+- After any production incident (P0–P3) that needs a written postmortem
+- When the incident is resolved but the team hasn't had time to write it up
+- When the team wants structured guidance through the root-cause analysis
+- When the postmortem needs to be shareable with non-technical stakeholders
 
 ## What It Does
 
-1. Collects incident severity, type, and basic facts
-2. Routes to the right analysis focus based on incident type (outage, degradation, security breach, data loss, deployment failure)
-3. Reconstructs a timestamped event timeline and flags detection gaps
-4. Quantifies impact: affected users, SLA breach, business and regulatory exposure
-5. Traces the causal chain using 5-Whys to distinguish proximate cause, root cause, and contributing factors
-6. Collects specific, testable action items (preventive, detective, corrective) with owner and due date
-7. Produces a complete, ready-to-share postmortem document
-8. Incorporates review feedback and finalizes the document
+1. Collects incident severity, type, time window, affected services, and customer impact
+2. Routes to the right RCA focus areas based on incident type (infrastructure outage, application error, security incident, data integrity, performance degradation, third-party dependency)
+3. Reconstructs a chronological timeline with key milestones: Origin · Detection · Escalation · Diagnosis · Mitigation · Resolution
+4. Quantifies impact: affected users, MTTD, MTTR, SLA breach, and regulatory obligations
+5. Walks through a guided 5 Whys root-cause analysis using the selected focus areas
+6. Generates a complete postmortem document with summary, impact metrics, timeline, root cause, contributing factors, what went well, and what could be improved
+7. Reviews and finalizes action items — ensuring each has a specific description, an owner, a due date, and a priority tier
 
 ## Note
 
-This skill facilitates the postmortem process — it does not replace engineering judgment or legal review. For incidents that trigger regulatory obligations (GDPR, HIPAA, PCI-DSS, SOC 2), consult your legal or compliance team before making public disclosures.
+This skill facilitates the postmortem process — it does not replace engineering judgment or legal review. For incidents that trigger regulatory obligations (GDPR, HIPAA, PCI-DSS, SOC 2), consult your legal or compliance team before making public disclosures. Never include customer PII, credentials, or internal secrets in the document.

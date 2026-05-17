@@ -1,6 +1,6 @@
 ---
 name: incident-postmortem
-description: Use when a DevOps or SRE team needs to write a blameless postmortem after a production incident. Guides timeline reconstruction, root cause analysis, and produces a complete postmortem document.
+description: Use when a DevOps or SRE team needs to write a blameless postmortem after a production incident. Guides timeline reconstruction, root cause analysis, and produces a complete postmortem document with prioritized action items.
 ---
 
 # Incident Postmortem
@@ -15,43 +15,43 @@ Follow these 6 phases in order. Ask one question at a time and wait for the resp
 
 ---
 
-## Phase 1: Intake & Routing
+## Phase 1: Incident Context & Routing
 
 ### Step 1: Collect Basic Facts
 
 Open with:
 
-> "I'll help you write a blameless postmortem. Let's gather the basics first. What is the severity level of this incident?"
+> "I'll help you write a blameless postmortem. Let's gather the basics first. What was the incident severity?"
 
-Offer: **P0 (total outage) / P1 (major impact) / P2 (partial impact) / P3 (minor degradation)**
+Offer: **P0 (Critical / total outage) / P1 (High / major impact) / P2 (Medium / partial impact) / P3 (Low / minor degradation)**
 
 Then ask, one at a time:
-1. What type of incident was this? (see routing table below)
-2. Date and UTC start time of the incident
-3. UTC resolution time
-4. Which services or systems were affected?
-5. Which team or on-call responders were involved?
+1. What type of incident was this? (see routing table in Step 2)
+2. When did the incident start and when was it resolved? (date/time and timezone)
+3. What services or systems were affected?
+4. What was the customer or business impact?
 
-### Step 2: Confirm Analysis Track
+### Step 2: Confirm RCA Focus Areas
 
-Based on incident type, select the analysis focus from the routing table below. Present it to the user:
+Based on incident type, select the RCA focus areas from the routing table below. Present them to the user:
 
-> "Since this is a [incident type] incident, I'll focus the analysis on: [focus areas]. Ready to start the timeline?"
+> "Since this is a [incident type] incident, I'll focus the root-cause analysis on these areas: [focus areas]. Does that cover everything, or should I add any areas?"
 
-Wait for confirmation before continuing.
+Wait for confirmation or additions before continuing.
 
 **Routing Table:**
 
-| Incident Type | Key Analysis Focus |
+| Incident Type | RCA Focus Areas |
 | --- | --- |
-| Service Outage | Blast radius · Cascading failures · Detection gap · Recovery procedure · SLA breach |
-| Performance Degradation | Metrics baseline · Degradation curve · SLA threshold breach · Capacity and scaling gaps |
-| Security Breach | Exfiltration scope · Containment timeline · Credential exposure · Regulatory obligations |
-| Data Loss / Corruption | Affected record scope · Backup state · Recovery options · Data integrity verification |
-| Deployment Failure | Change description · Rollback procedure · Release process gaps · Feature flag state |
-| Other (fallback) | Core impact · Contributing factors · Detection gap · Recovery |
+| Infrastructure outage | Capacity · Configuration drift · Network connectivity · Hardware failure |
+| Application error | Code defect · Dependency failure · Deployment change · Race condition / concurrency |
+| Security incident | Access control gap · Vulnerability · Detection delay · Response readiness |
+| Data integrity | Migration error · Transformation bug · Validation gap · Backup / restore failure |
+| Performance degradation | Load spike · Query inefficiency · Memory leak · Rate limiting / throttling |
+| Third-party dependency | SLA breach · Circuit breaker absence · Fallback behavior · Vendor communication |
+| Other | Ask the user to describe the failure mode before selecting focus areas |
 
-If the incident type is ambiguous, ask the user to clarify before selecting a track. Never silently fall back to Other.
+If the incident spans multiple types, ask the user which is primary and which are contributing. Never silently fall back to Other.
 
 ---
 
@@ -72,16 +72,18 @@ If the timeline has gaps, prompt specifically for:
 - When was the incident resolved?
 - When was normal service confirmed?
 
-Format the completed timeline as a table:
+Structure the timeline into milestone categories:
 
-```
-| UTC Time | Event | Source / Who |
-|----------|-------|--------------|
-| HH:MM    | Alert fired: high error rate on payments-service | PagerDuty |
-| HH:MM    | On-call engineer acknowledged | On-call rotation |
-```
+- **Origin** — When the underlying condition began (may be before detection)
+- **Detection** — First alert, error spike, or customer report
+- **Escalation** — On-call paged, incident declared, war room opened
+- **Diagnosis** — Key investigation steps that led to root cause
+- **Mitigation** — Actions that reduced impact (rollback, failover, feature flag, etc.)
+- **Resolution** — Full service restored, incident closed
 
-Flag any gap longer than 10 minutes between timeline events and ask the user to fill it in. Detection gaps (time from incident start to first alert) are especially important — always call them out explicitly.
+Always flag the detection gap (time from Origin to Detection) explicitly:
+
+> "I notice there's no detection time. How long between when the problem started and when the team was alerted? This gap is the MTTD and matters as a key learning signal."
 
 ---
 
@@ -103,6 +105,8 @@ Impact Summary:
 - Affected users: [number or %]
 - Affected segments: [regions, tiers, products]
 - Duration: [X hours Y minutes]
+- MTTD (Mean Time to Detect): [time from origin to detection]
+- MTTR (Mean Time to Resolve): [time from detection to resolution]
 - SLA breach: [Yes/No — SLA name, margin exceeded]
 - Business impact: [revenue estimate or "unknown"]
 - Regulatory obligations triggered: [Yes/No — specify if yes]
@@ -112,130 +116,85 @@ Impact Summary:
 
 ## Phase 4: Root Cause Analysis
 
-### Step 5: Trace the Causal Chain
+### Step 5: Guided 5 Whys
 
-Use the 5-Whys method to reach the root cause.
+Walk through a 5 Whys analysis using the focus areas confirmed in Step 2. For each level:
 
-Start with:
+1. State the finding from the previous level as fact.
+2. Ask: "Why did that happen?"
+3. Note whether the answer connects to a focus area from the routing table.
 
-> "What was the immediate technical cause — the specific failure that directly triggered the incident?"
+Stop when you reach a terminal condition:
+- A process or system gap that, if fixed, would prevent recurrence
+- A missing detection or alerting mechanism
+- An external factor outside the team's control (note as a dependency risk)
 
-For each answer, ask: "Why did that happen?" Continue until you reach a root cause that is addressable — a process gap, architectural weakness, missing safeguard, or configuration error. Stop at 5 iterations or when the chain is complete.
-
-Distinguish clearly between:
-
-| Type | Definition |
-| --- | --- |
-| Proximate cause | The immediate technical trigger |
-| Root cause | The underlying systemic or process gap that allowed the incident to occur |
-| Contributing factors | Conditions that made the incident worse or recovery harder |
-
-Present the completed causal chain for user review before continuing:
+After completing the analysis, present the root cause statement:
 
 ```
-Proximate cause: [specific trigger]
-Root cause: [underlying gap]
-Contributing factors:
-- [factor 1]
-- [factor 2]
-```
+Root Cause:
+[One sentence: the specific technical or process failure that, if addressed, would prevent recurrence]
 
-Wait for the user to confirm or correct.
-
----
-
-## Phase 5: Action Items
-
-### Step 6: Define Follow-Up Actions
-
-Collect action items in three categories:
-
-| Category | Purpose |
-| --- | --- |
-| Preventive | Changes to prevent this specific failure from recurring |
-| Detective | Improvements to alerting, monitoring, or observability to catch it sooner |
-| Corrective | Changes to reduce time-to-recover when similar incidents occur |
-
-For each action item, collect:
-- **What**: a specific, testable change — not "improve monitoring", but "add a latency alert on the payments-service P99 threshold of 500ms"
-- **Owner**: the team or person responsible
-- **Priority**: P0 (this week) / P1 (this sprint) / P2 (this quarter)
-- **Due date**: a specific date or sprint
-
-Reject vague action items. If the user gives a vague item like "be more careful" or "look into alerting", respond:
-
-> "Can you make that more specific? What exactly will change, and how will we know it's done?"
-
-Present action items in a table:
-
-```
-| # | Category    | Action                              | Owner  | Priority | Due        |
-|---|-------------|-------------------------------------|--------|----------|------------|
-| 1 | Preventive  | [specific change]                   | @team  | P1       | YYYY-MM-DD |
-| 2 | Detective   | [specific alerting improvement]     | @team  | P1       | YYYY-MM-DD |
+Contributing Factors:
+- [Factor 1]: [Brief explanation]
+- [Factor 2]: [Brief explanation]
 ```
 
 ---
 
-## Phase 6: Document Production
+## Phase 5: Document Generation
 
-### Step 7: Produce the Postmortem
+### Step 6: Generate the Postmortem
 
-Ask the user two final questions before assembling the document, one at a time:
-1. "What went well during the incident response?"
-2. "Was there anything that could have made this worse but didn't — a near-miss or lucky break?"
-
-Then assemble the complete postmortem document:
+Produce the full postmortem document using this exact format:
 
 ```
-# Postmortem: [Incident Title]
+# Postmortem: [Short incident title]
 
-**Severity:** [P0/P1/P2/P3]
-**Date:** [YYYY-MM-DD]
-**Duration:** [X hours Y minutes]
-**Status:** Resolved
-**Author(s):** [team or names]
+**Date:** [Date of incident]
+**Severity:** [P0 / P1 / P2 / P3]
+**Status:** Draft
+**Author:** [If provided; otherwise omit]
+
+---
 
 ## Summary
-
-[2–3 sentence plain-language summary: what happened, who was affected, and how it was resolved.]
+[2–3 sentence plain-language description: what happened, the impact, and how it was resolved. Suitable for non-technical stakeholders.]
 
 ## Impact
-
-[Filled impact block from Step 4]
+- **Duration:** [Total time from detection to resolution]
+- **Services affected:** [List]
+- **Customer impact:** [Quantify where possible: % of users, request volume affected, SLA breach]
+- **MTTD (Mean Time to Detect):** [Time from origin to detection]
+- **MTTR (Mean Time to Resolve):** [Time from detection to resolution]
+- **Regulatory obligations triggered:** [Yes/No — specify if yes]
 
 ## Timeline
+| Time (UTC) | Milestone | Event |
+| --- | --- | --- |
+| [time] | [Origin / Detection / Escalation / Diagnosis / Mitigation / Resolution] | [event] |
 
-[Timeline table from Step 3]
+## Root Cause
+[One sentence root cause statement]
 
-## Root Cause Analysis
-
-[Causal chain from Step 5]
+## Contributing Factors
+- [Factor]: [Explanation]
 
 ## What Went Well
+- [Process, tool, or behavior that helped contain or resolve the incident faster]
 
-[2–5 items from user input. Focus on response behaviors and system properties that helped.]
-
-## What Went Wrong
-
-[2–5 system and process failures — never individuals.]
-
-## Where We Got Lucky
-
-[Near-misses or favorable conditions that prevented the incident from being worse. Omit if none.]
+## What Could Be Improved
+- [Gap, friction point, or missed signal that prolonged or worsened the incident]
 
 ## Action Items
-
-[Action item table from Step 6]
-
-## Lessons Learned
-
-[1–3 sentence synthesis of the most important takeaways for the team and organization.]
+| Priority | Action | Owner | Due Date |
+| --- | --- | --- | --- |
+| Immediate (48h) | [Specific action to prevent recurrence] | [Team/person] | [Date] |
+| Short-term (2w) | [Detection or process improvement] | [Team/person] | [Date] |
+| Long-term (90d) | [Architecture or systemic improvement] | [Team/person] | [Date] |
 ```
 
-### Step 8: Review and Finalize
-
-After presenting the draft, ask:
+After generating the document, ask:
 
 > "Does this accurately capture the incident? Anything to correct, add, or remove before you share it?"
 
@@ -243,20 +202,33 @@ Incorporate feedback and produce a clean final version.
 
 ---
 
+## Phase 6: Action Items Review
+
+### Step 7: Finalize Action Items
+
+Review the action items with the user:
+
+1. Confirm each action is specific and measurable — not "improve monitoring" but "add alert for p99 latency > 2s on checkout-service".
+2. Flag any action missing an owner or due date.
+3. Confirm priority tier: **Immediate** (within 48 hours) · **Short-term** (within 2 weeks) · **Long-term** (within 90 days).
+
+Ask:
+
+> "Are there any actions missing? Is there anything that should be elevated to Immediate?"
+
+---
+
 ## Key Rules
 
 - Ask one question at a time and wait for the user's response before continuing.
-- Never assign blame to individuals. Always frame findings around systems, processes, and conditions.
-- Step 2 is mandatory. Always present the analysis track and wait for confirmation before starting Phase 2.
-- Always flag detection gaps — the time between incident start and first detection is a key learning signal.
-- Action items must be specific and testable. Reject vague items and ask for concrete alternatives.
-- Remind users to redact sensitive data before pasting logs or messages.
-- If the incident is ongoing, pause after Phase 3 (Impact Assessment) and return to finish the postmortem after resolution.
-- If regulatory obligations are triggered, note that public statements and disclosures require legal review.
-
-## Safety Boundaries
-
-- Do not log, repeat, or incorporate credentials, API keys, IP addresses, or PII that the user pastes. If they appear, ask the user to re-provide the content with those values removed.
+- Never assign blame to individuals. Always frame findings around systems, processes, and conditions — never people.
+- Step 2 confirmation is mandatory. Always present the RCA focus areas and wait for confirmation before starting Phase 4.
+- If incident type is ambiguous or spans multiple types, ask the user before selecting focus areas. Never silently fall back to Other.
+- Always flag the detection gap. MTTD is a key reliability metric — missing time data makes the postmortem less useful.
 - Remind users to redact sensitive data before Step 3 (timeline input).
+- Always include at least one action item. A postmortem with no actions is not a postmortem.
+- Never include customer PII, credentials, internal secrets, session tokens, or raw IP addresses in the generated document. If the user pastes log excerpts or alerts containing sensitive data, redact before including.
+- Frame "What Went Well" as genuine observations — do not manufacture praise to balance criticism.
 - Do not make definitive statements about regulatory obligations, legal liability, or required disclosures — flag them and recommend legal review.
+- For P0 or security incidents, note at the end of the document: "Review with your security or legal team before sharing externally."
 - Do not publish, send, or share the postmortem on behalf of the user.
