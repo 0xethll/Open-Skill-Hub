@@ -23,6 +23,15 @@
         "name": "devasher",
         "email": "hlxstc680@gmail.com"
       }
+    },
+    {
+      "name": "open-skill-hub-ux-research",
+      "description": "UX research skills for AI coding agents",
+      "source": "./plugins/ux-research",
+      "author": {
+        "name": "devasher",
+        "email": "hlxstc680@gmail.com"
+      }
     }
   ]
 }
