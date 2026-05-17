@@ -23,6 +23,15 @@
         "name": "devasher",
         "email": "hlxstc680@gmail.com"
       }
+    },
+    {
+      "name": "open-skill-hub-devops",
+      "description": "DevOps and SRE skills for AI coding agents",
+      "source": "./plugins/devops",
+      "author": {
+        "name": "devasher",
+        "email": "hlxstc680@gmail.com"
+      }
     }
   ]
 }
