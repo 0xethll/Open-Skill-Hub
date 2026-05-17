@@ -29,6 +29,18 @@
       "category": "Productivity"
     },
     {
+      "name": "ux-research",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ux-research"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
       "name": "devops",
       "source": {
         "source": "local",

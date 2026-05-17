@@ -1,0 +1,10 @@
+{
+  "name": "open-skill-hub-ux-research",
+  "description": "UX research skills for AI agents",
+  "version": "0.1.0",
+  "author": { "name": "devasher", "email": "hlxstc680@gmail.com" },
+  "homepage": "https://github.com/archlab-space/Open-Skill-Hub",
+  "repository": "https://github.com/archlab-space/Open-Skill-Hub",
+  "license": "MIT",
+  "keywords": ["skills", "ux-research"]
+}
